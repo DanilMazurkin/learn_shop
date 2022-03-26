@@ -14,12 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path
 
 from products_category.views import index
 from products_category.views import product
 from products_category.views import categories
 from django.views.generic import TemplateView
+from publishers.views import PublisherList
+from feedback.views import FeedbackCreateView
+from feedback.views import FeedbackView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +32,11 @@ urlpatterns = [
         template_name="index.html",
         extra_context={"header": "О сайте"}
     )),
+    path('publishers/', PublisherList.as_view()),
     path('categories', categories),
     path('products', index),
     path('product/<int:id_product>', product),
+    path('feedback', FeedbackView.as_view()),
+    path('feedback/create', FeedbackCreateView.as_view()),
 ]
 

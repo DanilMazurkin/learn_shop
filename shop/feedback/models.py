@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Feedback(models.Model):
+    """Модель feedback
+    :param user_name: имя пользователя
+    """
     user_name = models.CharField(
         max_length=50,
         verbose_name='Имя пользователя',
